@@ -7,6 +7,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const CssRenameWebpackPlugin = require('cssrename-webpack-plugin');
+var CssRenameWebpackPluginConfig = new CssRenameWebpackPlugin();
+
+
 /**
  * Env
  * Get npm lifecycle event to identify the environment
@@ -100,7 +104,7 @@ module.exports = function makeWebpackConfig () {
       //
       // Reference: https://github.com/webpack/style-loader
       // Use style-loader in development.
-      loader: isTest ? 'null' : ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!postcss-loader')
+      loader: isTest ? 'null' : 'style-loader!css-loader!cssrename-loader!postcss-loader'
     }, {
       // ASSET LOADER
       // Reference: https://github.com/webpack/file-loader
@@ -153,7 +157,9 @@ module.exports = function makeWebpackConfig () {
    * Reference: http://webpack.github.io/docs/configuration.html#plugins
    * List: http://webpack.github.io/docs/list-of-plugins.html
    */
-  config.plugins = [];
+  config.plugins = [
+    CssRenameWebpackPluginConfig
+  ];
 
   // Skip rendering index.html in test mode
   if (!isTest) {

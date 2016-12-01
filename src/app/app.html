@@ -5,7 +5,7 @@
   <!--<img src="/img/logo.png">-->
 
 
-  <p ng-class="{strike: deleted, bold: important, 'has-error': error}">Map Syntax Example</p>
+  <p ng-class="{___strike__: deleted, ___bold__: important, '___has-error__': error}">Map Syntax Example</p>
   <label>
     <input type="checkbox" ng-model="deleted">
     deleted (apply "strike" class)
@@ -19,11 +19,11 @@
     error (apply "has-error" class)
   </label>
   <hr>
-  <p ng-class="style">Using String Syntax</p>
+  <p class="{{style | myFilter}}">Using String Syntax</p>
   <input type="text" ng-model="style"
          placeholder="Type: bold strike red" aria-label="Type: bold strike red">
   <hr>
-  <p ng-class="[style1, style2, style3]">Using Array Syntax</p>
+  <p class="{{[style1, style2, style3] | myFilter}}">Using Array Syntax</p>
   <input ng-model="style1"
          placeholder="Type: bold, strike or red" aria-label="Type: bold, strike or red"><br>
   <input ng-model="style2"
@@ -31,7 +31,7 @@
   <input ng-model="style3"
          placeholder="Type: bold, strike or red" aria-label="Type: bold, strike or red 3"><br>
   <hr>
-  <p ng-class="[style4, {orange: warning}]">Using Array and Map Syntax</p>
+  <p class="{{[style4, {orange: warning}] | myFilter}}">Using Array and Map Syntax</p>
   <input ng-model="style4" placeholder="Type: bold, strike" aria-label="Type: bold, strike"><br>
   <label><input type="checkbox" ng-model="warning"> warning (apply "orange" class)</label>
 
@@ -42,7 +42,7 @@
          placeholder="Type: int" aria-label="Type: int">
 
   <p>
-    <a href="#" ng-class="{selected: ctx > 5}">link</a>
+    <a href="#" ng-class="{___selected__: ctx > 5}">link</a>
   </p>
 </main>
 <footer>
